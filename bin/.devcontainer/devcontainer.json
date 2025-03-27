@@ -1,0 +1,8 @@
+{
+    "name": "Rails Dev Container",
+    "image": "mcr.microsoft.com/vscode/devcontainers/ruby:latest",
+    "forwardPorts": [3001],
+    "postCreateCommand": "bundle install && rails db:migrate",
+    "extensions": ["rebornix.Ruby"]
+  }
+  

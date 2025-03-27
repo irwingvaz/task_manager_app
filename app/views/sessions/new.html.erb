@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f4f4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    form {
+      background: white;
+      padding: 25px 30px;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      min-width: 300px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 600;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4a90e2;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+
+    .error-msg {
+      color: red;
+      font-size: 0.9em;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <%= form_with url: login_path, method: :post, local: true do |f| %>
+    <h2>Welcome Back</h2>
+
+    <% if flash[:alert] %>
+      <div class="error-msg"><%= flash[:alert] %></div>
+    <% end %>
+
+    <%= f.label :username %>
+    <%= f.text_field :username, id: 'userInput', required: true %>
+
+    <%= f.label :password %>
+    <%= f.password_field :password, id: 'passInput', required: true %>
+
+    <%= f.submit 'Log In' %>
+  <% end %>
+</body>
+</html>

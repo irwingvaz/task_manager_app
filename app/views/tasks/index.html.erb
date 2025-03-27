@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Task Manager - Main Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+    #greeting {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+    .todo-container {
+      margin-top: 20px;
+      max-width: 300px;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      background: #f4f4f4;
+      margin: 5px 0;
+      padding: 8px;
+      border-radius: 4px;
+    }
+    form {
+      margin-top: 10px;
+    }
+    button {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Hello <%= current_user.username %>!</h1>
+  <h2>To-Do</h2>
+  <% if notice %>
+    <p><%= notice %></p>
+  <% end %>
+  <ul>
+    <% @tasks.each do |task| %>
+      <li><%= task.description %></li>
+    <% end %>
+  </ul>
+  <%= form_with url: tasks_path, local: true do |f| %>
+    <%= f.text_field :description, placeholder: "New task...", required: true %>
+    <%= f.submit "Add" %>
+  <% end %>
+  <%= button_to "Logout", logout_path, method: :delete %>
+</body>
+</html>
